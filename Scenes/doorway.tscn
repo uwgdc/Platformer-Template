@@ -8,12 +8,11 @@ size = Vector2(64, 128)
 
 [node name="Door" type="Area2D"]
 script = ExtResource("1_7l27y")
-metadata/_edit_group_ = true
+interactable = true
+indicator_offset = 115
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4l0wu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ttx0t")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

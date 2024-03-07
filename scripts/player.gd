@@ -38,4 +38,4 @@ func _physics_process(delta):
 	
 func reset_position():
 	position = start_pos
-	print("hi")
+	velocity = Vector2.ZERO

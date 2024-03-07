@@ -6,6 +6,7 @@ class_name Level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if (player == null): return
 	player.init(self)
 	
 	for child in get_children():

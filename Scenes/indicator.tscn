@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3jsasgimt4dc"]
+
+[ext_resource type="Texture2D" uid="uid://c8ta1g4an5tlt" path="res://art/arrow.png" id="1_mdx1y"]
+[ext_resource type="Script" path="res://scripts/indicator.gd" id="2_vrrr8"]
+
+[sub_resource type="Animation" id="Animation_geprg"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.148651),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 0.146),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_egs7n"]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 6.85),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 6.85),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ac1l"]
+_data = {
+"appear": SubResource("Animation_geprg"),
+"disappear": SubResource("Animation_egs7n")
+}
+
+[node name="Arrow" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 10)
+texture = ExtResource("1_mdx1y")
+offset = Vector2(0, 10)
+script = ExtResource("2_vrrr8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ac1l")
+}

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4q3vvyx6bgw"]
+[gd_scene load_steps=8 format=3 uid="uid://b4q3vvyx6bgw"]
 
 [ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://art/background.png" id="1_5kn03"]
-[ext_resource type="Script" path="res://Scenes/start_screen.gd" id="1_omfjq"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_omfjq"]
 [ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://fonts/BRLNSDB.TTF" id="2_21cp6"]
 [ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="3_281xf"]
 [ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://normal_text.tres" id="4_0no18"]
+[ext_resource type="Script" path="res://scripts/StartButton.gd" id="6_jrv7p"]
 
 [sub_resource type="Theme" id="Theme_327jx"]
 default_font = ExtResource("2_21cp6")
@@ -50,6 +51,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_0no18")
 text = "Start"
+script = ExtResource("6_jrv7p")
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(260, 0)

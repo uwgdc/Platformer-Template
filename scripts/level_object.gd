@@ -2,15 +2,37 @@ class_name LevelObject
 extends Area2D
 
 var player: Player
-	
-func connect_signals() -> void:
-	pass	
+
+@export var interactable: bool = false	
+@export var indicator_offset: int = 0
+var can_interact: bool = false
+var indicator_scene = preload("res://Scenes/indicator.tscn")
+var indicator: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
+	if (interactable):
+		body_entered.connect(_on_body_entered)
+		body_exited.connect(_on_body_exited)
+		indicator = indicator_scene.instantiate()
+		add_child(indicator)
+		indicator.position[1] -= indicator_offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if can_interact and Input.is_action_just_pressed("interact"):
+		interaction()
+
+func _on_body_entered(body: Node2D):
+	if body == player:
+		indicator.appear()
+		can_interact = true
+
+func _on_body_exited(body: Node2D):
+	if body == player:
+		indicator.disappear()	
+		can_interact = false
+	
+func interaction():
 	pass
