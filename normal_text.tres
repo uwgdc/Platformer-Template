@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qseykuvemo1o"]
+
+[ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="1_25vp2"]
+
+[resource]
+default_font = ExtResource("1_25vp2")
+default_font_size = 50

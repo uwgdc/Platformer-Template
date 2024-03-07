@@ -1,19 +1,22 @@
-class_name Player
 extends CharacterBody2D
+class_name Player
 
 @onready var camera: Camera2D = $Camera2D
 
 # Player parameters
 const MOVE_SPEED = 400.0
 const JUMP_VELOCITY = -600.0 # (negative is up, positive is down)
+var gravity = 1000
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = 1000 #ProjectSettings.get_setting("physics/2d/default_gravity")
+var start_pos: Vector2
 
 # called when player is loaded into level
 #   sets camera limits to match size of level
-func init (level: Level):
+func init (level: Level) -> void:
 	camera.set_limits(level.get_limits())
+
+func _ready():
+	start_pos = position
 
 func _physics_process(delta):
 	# Add the gravity if in the air
@@ -32,3 +35,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, MOVE_SPEED)
 
 	move_and_slide()
+	
+func reset_position():
+	position = start_pos
+	print("hi")

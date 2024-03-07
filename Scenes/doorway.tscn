@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://jwr35uhwma57"]
+
+[ext_resource type="Texture2D" uid="uid://b300oklaul0nq" path="res://art/doorway.png" id="1_4l0wu"]
+[ext_resource type="Script" path="res://scripts/doorway.gd" id="1_7l27y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttx0t"]
+size = Vector2(64, 128)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_7l27y")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4l0wu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ttx0t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

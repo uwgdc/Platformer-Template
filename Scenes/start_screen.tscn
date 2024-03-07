@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4q3vvyx6bgw"]
+
+[ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://art/background.png" id="1_5kn03"]
+[ext_resource type="Script" path="res://Scenes/start_screen.gd" id="1_omfjq"]
+[ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://fonts/BRLNSDB.TTF" id="2_21cp6"]
+[ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="3_281xf"]
+[ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://normal_text.tres" id="4_0no18"]
+
+[sub_resource type="Theme" id="Theme_327jx"]
+default_font = ExtResource("2_21cp6")
+default_font_size = 75
+Fonts/fonts/large = ExtResource("2_21cp6")
+Fonts/fonts/normal = ExtResource("3_281xf")
+
+[node name="StartScreen" type="Node"]
+script = ExtResource("1_omfjq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("1_5kn03")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -352.5
+offset_right = 352.5
+offset_bottom = 121.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 215
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_327jx")
+text = "Platformer Template"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_0no18")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_0no18")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

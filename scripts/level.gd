@@ -7,7 +7,10 @@ class_name Level
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.init(self)
-
+	
+	for child in get_children():
+		if (child is LevelObject):
+			child.player = player
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:
