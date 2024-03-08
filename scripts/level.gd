@@ -3,6 +3,7 @@ class_name Level
 
 @onready var tile_map: TileMap = $LevelTileMap
 @onready var player: Player = $Player
+signal level_changed(level_name: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 	for child in get_children():
 		if (child is LevelObject):
 			child.player = player
+			child.level = self
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:

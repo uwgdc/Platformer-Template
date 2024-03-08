@@ -2,6 +2,7 @@ class_name LevelObject
 extends Area2D
 
 var player: Player
+var level: Level
 
 @export var interactable: bool = false	
 @export var indicator_offset: int = 0
@@ -11,7 +12,6 @@ var indicator: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
 	if (interactable):
 		body_entered.connect(_on_body_entered)
 		body_exited.connect(_on_body_exited)

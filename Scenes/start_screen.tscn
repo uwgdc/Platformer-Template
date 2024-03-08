@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://fonts/BRLNSDB.TTF" id="2_21cp6"]
 [ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="3_281xf"]
 [ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://normal_text.tres" id="4_0no18"]
-[ext_resource type="Script" path="res://scripts/StartButton.gd" id="6_jrv7p"]
+[ext_resource type="Script" path="res://scripts/start_button.gd" id="6_jrv7p"]
 
 [sub_resource type="Theme" id="Theme_327jx"]
 default_font = ExtResource("2_21cp6")

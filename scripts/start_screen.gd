@@ -5,8 +5,8 @@ var screen_size: Vector2i
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = DisplayServer.screen_get_size()
-	window_size = Vector2i(screen_size[0]*0.7,
-						   screen_size[0]*0.7*window_size[1]/window_size[0])
+	window_size = Vector2i(round(screen_size[0]*0.7),
+						   round(screen_size[0]*0.7)*window_size[1]/window_size[0])
 	DisplayServer.window_set_size(window_size)
 	DisplayServer.window_set_position(screen_size/2 - window_size/2)
 

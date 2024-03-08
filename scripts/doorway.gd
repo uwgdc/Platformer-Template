@@ -1,4 +1,6 @@
 extends LevelObject
 
+@export var to_level: String
+
 func interaction():
-	player.reset_position()
+	level.level_changed.emit(to_level)
