@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://jwr35uhwma57"]
 
-[ext_resource type="Texture2D" uid="uid://b300oklaul0nq" path="res://art/doorway.png" id="1_4l0wu"]
-[ext_resource type="Script" path="res://scripts/doorway.gd" id="1_7l27y"]
+[ext_resource type="Texture2D" uid="uid://b300oklaul0nq" path="res://assets/art/doorway.png" id="1_4l0wu"]
+[ext_resource type="Script" path="res://scenes/level_objects/doorway.gd" id="1_7l27y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttx0t"]
 size = Vector2(64, 128)

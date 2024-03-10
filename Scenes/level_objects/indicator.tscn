@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3jsasgimt4dc"]
 
-[ext_resource type="Texture2D" uid="uid://c8ta1g4an5tlt" path="res://art/arrow.png" id="1_mdx1y"]
-[ext_resource type="Script" path="res://scripts/indicator.gd" id="2_vrrr8"]
+[ext_resource type="Texture2D" uid="uid://c8ta1g4an5tlt" path="res://assets/art/arrow.png" id="1_mdx1y"]
+[ext_resource type="Script" path="res://scenes/level_objects/indicator.gd" id="2_vrrr8"]
 
 [sub_resource type="Animation" id="Animation_geprg"]
 resource_name = "appear"

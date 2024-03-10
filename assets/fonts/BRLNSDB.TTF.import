@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bfsil5albm2ux"
-path="res://.godot/imported/BRLNSDB.TTF-0454520c27a81eb756d69bf3a9671abd.fontdata"
+path="res://.godot/imported/BRLNSDB.TTF-20f63e07c89383a368937a03d08b9733.fontdata"
 
 [deps]
 
-source_file="res://fonts/BRLNSDB.TTF"
-dest_files=["res://.godot/imported/BRLNSDB.TTF-0454520c27a81eb756d69bf3a9671abd.fontdata"]
+source_file="res://assets/fonts/BRLNSDB.TTF"
+dest_files=["res://.godot/imported/BRLNSDB.TTF-20f63e07c89383a368937a03d08b9733.fontdata"]
 
 [params]
 

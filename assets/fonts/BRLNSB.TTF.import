@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://l7t4wvqaqfv"
-path="res://.godot/imported/BRLNSR.TTF-306fe4a92469a89e428167af09744f15.fontdata"
+uid="uid://c6koaxatjicds"
+path="res://.godot/imported/BRLNSB.TTF-ef0865d0f2717ccfba7ec80e10ae2439.fontdata"
 
 [deps]
 
-source_file="res://fonts/BRLNSR.TTF"
-dest_files=["res://.godot/imported/BRLNSR.TTF-306fe4a92469a89e428167af09744f15.fontdata"]
+source_file="res://assets/fonts/BRLNSB.TTF"
+dest_files=["res://.godot/imported/BRLNSB.TTF-ef0865d0f2717ccfba7ec80e10ae2439.fontdata"]
 
 [params]
 

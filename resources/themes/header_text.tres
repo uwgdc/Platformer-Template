@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://oil57l5gkkxg"]
 
-[ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://fonts/BRLNSDB.TTF" id="1_78vym"]
-[ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="2_fvqoh"]
+[ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://assets/fonts/BRLNSDB.TTF" id="1_78vym"]
+[ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://assets/fonts/BRLNSR.TTF" id="2_fvqoh"]
 
 [resource]
 default_font = ExtResource("1_78vym")

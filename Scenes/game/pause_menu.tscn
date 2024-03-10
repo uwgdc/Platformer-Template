@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ykbwcdb7yt61"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_308f8"]
-[ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://normal_text.tres" id="2_8c66l"]
-[ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://button_theme.tres" id="3_s8qrs"]
+[ext_resource type="Script" path="res://scenes/game/pause_menu.gd" id="1_308f8"]
+[ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://resources/themes/normal_text.tres" id="2_23ata"]
+[ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://resources/themes/button_theme.tres" id="3_plher"]
 
 [node name="MarginContainer" type="MarginContainer"]
 process_mode = 2
@@ -30,19 +30,19 @@ theme_override_constants/separation = 45
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_8c66l")
+theme = ExtResource("2_23ata")
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_s8qrs")
+theme = ExtResource("3_plher")
 text = "Continue"
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_s8qrs")
+theme = ExtResource("3_plher")
 text = "Quit
 "
 

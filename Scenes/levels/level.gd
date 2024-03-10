@@ -2,8 +2,9 @@ extends Node
 class_name Level
 
 @onready var tile_map: TileMap = $LevelTileMap
-@onready var camera: Camera2D = $Player/Camera2D
+@onready var camera: Camera2D = $Camera2D
 @onready var player: Player = $Player
+
 signal level_changed(level_name: PackedScene)
 
 # Called when the node enters the scene tree for the first time.
@@ -13,8 +14,11 @@ func _ready():
 			child.player = $Player
 			child.level = self
 
-	$Player/Camera2D.set_limits(get_limits())
-	$Player.tile_map = tile_map
+	camera.set_limits(get_limits())
+	player.tile_map = tile_map
+
+func _process(_delta):
+	camera.global_position = player.position
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:

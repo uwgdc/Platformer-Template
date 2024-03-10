@@ -7,7 +7,7 @@ var level: Level
 @export var interactable: bool = false	
 @export var indicator_offset: int = 0
 var can_interact: bool = false
-var indicator_scene = preload("res://Scenes/indicator.tscn")
+var indicator_scene = preload("res://scenes/level_objects/indicator.tscn")
 var indicator: Node
 
 # Called when the node enters the scene tree for the first time.

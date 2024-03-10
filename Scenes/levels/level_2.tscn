@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ajpstql6xhe"]
+[gd_scene load_steps=7 format=3 uid="uid://c1ajpstql6xhe"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_8ibrm"]
-[ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://art/background.png" id="2_6428t"]
-[ext_resource type="PackedScene" path="res://Scenes/doorway.tscn" id="3_0tkdf"]
-[ext_resource type="PackedScene" uid="uid://cxsrdo3dax7kl" path="res://Scenes/levels/level_tile_map.tscn" id="4_j5ysd"]
-[ext_resource type="PackedScene" uid="uid://d4n1kp3j8smdl" path="res://Scenes/player.tscn" id="5_wrw06"]
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_8ibrm"]
+[ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://assets/art/background.png" id="2_6428t"]
+[ext_resource type="PackedScene" uid="uid://jwr35uhwma57" path="res://scenes/level_objects/doorway.tscn" id="3_0tkdf"]
+[ext_resource type="PackedScene" uid="uid://cxsrdo3dax7kl" path="res://scenes/levels/level_tile_map.tscn" id="4_j5ysd"]
+[ext_resource type="PackedScene" uid="uid://d4n1kp3j8smdl" path="res://scenes/player/player.tscn" id="5_wrw06"]
+[ext_resource type="Script" path="res://scenes/levels/camera.gd" id="6_quqoe"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_8ibrm")
@@ -15,12 +16,15 @@ offset_bottom = 576.0
 texture = ExtResource("2_6428t")
 stretch_mode = 1
 
+[node name="LevelTileMap" parent="." instance=ExtResource("4_j5ysd")]
+layer_0/tile_data = PackedInt32Array(0, 262144, 0, 1, 131072, 3, 2, 131072, 3, 3, 131072, 3, 4, 131072, 3, 5, 131072, 3, 6, 131072, 3, 7, 131072, 3, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 393216, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 262144, 4, 458753, 131072, 0, 458754, 131072, 0, 458755, 131072, 0, 458756, 131072, 0, 458757, 131072, 0, 458758, 131072, 0, 458759, 131072, 0, 458760, 131072, 0, 458761, 131072, 0, 458762, 131072, 0, 458763, 458752, 4, 393227, 0, 1, 327691, 0, 1, 262155, 0, 1, 196619, 0, 1, 131083, 0, 1, 65547, 0, 1, 524288, 65536, 2, 524289, 131072, 2, 524290, 131072, 2, 524291, 131072, 2, 524292, 131072, 2, 524293, 131072, 2, 524294, 131072, 2, 524295, 131072, 2, 524296, 131072, 2, 524297, 131072, 2, 524298, 131072, 2, 524299, 196608, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("6_quqoe")
+
 [node name="Door" parent="." instance=ExtResource("3_0tkdf")]
 position = Vector2(584, 384)
 to_level = "res://Scenes/levels/level_1.tscn"
-
-[node name="LevelTileMap" parent="." instance=ExtResource("4_j5ysd")]
-layer_0/tile_data = PackedInt32Array(0, 262144, 0, 1, 131072, 3, 2, 131072, 3, 3, 131072, 3, 4, 131072, 3, 5, 131072, 3, 6, 131072, 3, 7, 131072, 3, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 393216, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 262144, 4, 458753, 131072, 0, 458754, 131072, 0, 458755, 131072, 0, 458756, 131072, 0, 458757, 131072, 0, 458758, 131072, 0, 458759, 131072, 0, 458760, 131072, 0, 458761, 131072, 0, 458762, 131072, 0, 458763, 458752, 4, 393227, 0, 1, 327691, 0, 1, 262155, 0, 1, 196619, 0, 1, 131083, 0, 1, 65547, 0, 1, 524288, 65536, 2, 524289, 131072, 2, 524290, 131072, 2, 524291, 131072, 2, 524292, 131072, 2, 524293, 131072, 2, 524294, 131072, 2, 524295, 131072, 2, 524296, 131072, 2, 524297, 131072, 2, 524298, 131072, 2, 524299, 196608, 2)
 
 [node name="Player" parent="." instance=ExtResource("5_wrw06")]
 position = Vector2(224, 376)
