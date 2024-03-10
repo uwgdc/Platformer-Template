@@ -22,17 +22,16 @@ func _physics_process(delta):
 	var ACCEL: float = SPEED/ACCEL_TIME
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x += direction * ACCEL * get_friction() * delta
+		velocity.x += direction * ACCEL * get_tile_friction() * delta
 		velocity.x = clamp(velocity.x, -SPEED, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, ACCEL*get_friction()*delta)
+		velocity.x = move_toward(velocity.x, 0, ACCEL*get_tile_friction()*delta)
 	move_and_slide()
 
-func get_friction() -> float:
+func get_tile_friction() -> float:
 	var tile_cell_pos: Vector2i = tile_map.local_to_map(tile_collider.global_position)
 	var tile_data: TileData = tile_map.get_cell_tile_data(0, tile_cell_pos)
 	if tile_data:
 		var friction = tile_data.get_custom_data("friction")
-		print(friction)
 		return(friction)
 	return 1

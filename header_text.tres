@@ -4,5 +4,7 @@
 [ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="2_fvqoh"]
 
 [resource]
+default_font = ExtResource("1_78vym")
+default_font_size = 75
 Fonts/fonts/large = ExtResource("1_78vym")
 Fonts/fonts/normal = ExtResource("2_fvqoh")

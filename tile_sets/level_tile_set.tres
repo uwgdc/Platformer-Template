@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b3vd4sdjew4dk"]
 
-[ext_resource type="Texture2D" uid="uid://bknl3xtlcpyk6" path="res://art/wall_tilesheet2.png" id="1_e23ca"]
+[ext_resource type="Texture2D" uid="uid://bknl3xtlcpyk6" path="res://art/wall_tilesheet.png" id="1_e23ca"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3kta6"]
 resource_name = "wall"

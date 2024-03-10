@@ -3,6 +3,7 @@ class_name Level
 
 @onready var tile_map: TileMap = $LevelTileMap
 @onready var camera: Camera2D = $Player/Camera2D
+@onready var player: Player = $Player
 signal level_changed(level_name: PackedScene)
 
 # Called when the node enters the scene tree for the first time.
@@ -25,3 +26,7 @@ func get_limits() -> Rect2i:
 	limits.end.y *= tile_size.y
 	
 	return limits
+	
+func get_camera_position():
+	return camera.get_screen_center_position() -  \
+		   (get_viewport().content_scale_size as Vector2) / 2

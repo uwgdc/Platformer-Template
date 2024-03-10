@@ -16,3 +16,8 @@ func on_level_changed(next_level_scene: PackedScene):
 	current_level.queue_free()
 	next_level.level_changed.connect(on_level_changed)
 	current_level = next_level
+
+func _process(_delta):
+	if (Input.is_action_just_pressed("ui_cancel")):
+		$PauseMenu.position = current_level.get_camera_position()
+		$PauseMenu.pause_game()

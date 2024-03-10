@@ -1,17 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm4ujsqb0cnga"]
+[gd_scene load_steps=5 format=3 uid="uid://dm4ujsqb0cnga"]
 
 [ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://art/background.png" id="1_5kn03"]
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_omfjq"]
-[ext_resource type="FontFile" uid="uid://bfsil5albm2ux" path="res://fonts/BRLNSDB.TTF" id="2_21cp6"]
-[ext_resource type="FontFile" uid="uid://l7t4wvqaqfv" path="res://fonts/BRLNSR.TTF" id="3_281xf"]
-[ext_resource type="Theme" path="res://normal_text.tres" id="4_0no18"]
-[ext_resource type="Script" path="res://scripts/start_button.gd" id="6_jrv7p"]
-
-[sub_resource type="Theme" id="Theme_327jx"]
-default_font = ExtResource("2_21cp6")
-default_font_size = 75
-Fonts/fonts/large = ExtResource("2_21cp6")
-Fonts/fonts/normal = ExtResource("3_281xf")
+[ext_resource type="Theme" uid="uid://oil57l5gkkxg" path="res://header_text.tres" id="3_2fwjr"]
+[ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://button_theme.tres" id="4_0dcj2"]
 
 [node name="StartScreen" type="Node"]
 script = ExtResource("1_omfjq")
@@ -26,9 +18,9 @@ stretch_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -352.5
-offset_right = 352.5
-offset_bottom = 121.0
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 720.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 215
 
@@ -38,7 +30,8 @@ theme_override_constants/separation = 65
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_327jx")
+size_flags_horizontal = 4
+theme = ExtResource("3_2fwjr")
 text = "Platformer Template"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -49,15 +42,14 @@ theme_override_constants/separation = 25
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("4_0no18")
+theme = ExtResource("4_0dcj2")
 text = "Start"
-script = ExtResource("6_jrv7p")
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("4_0no18")
+theme = ExtResource("4_0dcj2")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
