@@ -8,9 +8,7 @@
 size = Vector2(56, 84)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(0, -74)
 script = ExtResource("1_mvwvm")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
@@ -23,3 +21,6 @@ shape = SubResource("RectangleShape2D_ucb8u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_8lvtt")
+
+[node name="TileCollider" type="Node2D" parent="."]
+position = Vector2(0, 78)

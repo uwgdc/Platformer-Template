@@ -13,6 +13,7 @@ func _ready():
 			child.level = self
 
 	$Player/Camera2D.set_limits(get_limits())
+	$Player.tile_map = tile_map
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:
