@@ -1,6 +1,7 @@
 extends LevelObject
 
-@export var to_level: String
+@export_file("*.tscn") var to_level: String
 
 func interaction():
-	level.level_changed.emit(to_level)
+	var test = load(to_level) as PackedScene
+	level.level_changed.emit(test)

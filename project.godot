@@ -21,6 +21,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="GDC_Platformer_Template"
+
 [input]
 
 move_left={

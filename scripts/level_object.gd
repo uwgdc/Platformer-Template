@@ -20,7 +20,7 @@ func _ready():
 		indicator.position[1] -= indicator_offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if can_interact and Input.is_action_just_pressed("interact"):
 		interaction()
 
