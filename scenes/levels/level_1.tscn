@@ -24,7 +24,7 @@ script = ExtResource("6_rnkut")
 
 [node name="Door" parent="." instance=ExtResource("3_0ao6k")]
 position = Vector2(3615, 640)
-to_level = "res://Scenes/levels/level_2.tscn"
+to_level = "res://scenes/levels/level_2.tscn"
 
 [node name="Player" parent="." instance=ExtResource("5_6kbcg")]
 position = Vector2(328, 1064)
