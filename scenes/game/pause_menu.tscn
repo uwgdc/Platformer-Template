@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ykbwcdb7yt61"]
+[gd_scene load_steps=5 format=3 uid="uid://ykbwcdb7yt61"]
 
 [ext_resource type="Script" path="res://scenes/game/pause_menu.gd" id="1_308f8"]
 [ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://resources/themes/normal_text.tres" id="2_23ata"]
 [ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://resources/themes/button_theme.tres" id="3_plher"]
+[ext_resource type="AudioStream" uid="uid://btkkuhlupguyf" path="res://assets/audio/MI_SFX 03.wav" id="4_s55e7"]
 
 [node name="MarginContainer" type="MarginContainer"]
 process_mode = 2
@@ -35,15 +36,19 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_plher")
 text = "Continue"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_plher")
 text = "Quit
 "
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="continue_game"]
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s55e7")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="continue_game"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

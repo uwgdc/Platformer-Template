@@ -18,7 +18,9 @@ func _ready():
 
 
 func _on_start_button_pressed():
+	$ButtonSound.play()
 	get_tree().change_scene_to_file(game_path)
 
 func _on_quit_button_pressed():
+	$ButtonSound.play()
 	get_tree().quit()

@@ -7,7 +7,7 @@ var tile_map: TileMap = null
 # movement parameters (play with them in the inspector ->)
 @export var SPEED: float = 400
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
-@export var JUMP_VELOCITY: float = -800 # (negative is up, positive is down)
+@export var JUMP_VELOCITY: float = -600 # (negative is up, positive is down)
 @export var GRAVITY = 1200
 
 # Handles player input and movement
@@ -19,11 +19,14 @@ func _physics_process(delta):
 
 	# Handle jump if on the ground
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$JumpSound.play()
 		velocity.y = JUMP_VELOCITY
 
 
 	# HORIZONTAL MOVEMENT
 	var ACCEL: float = SPEED/ACCEL_TIME  # acceleration = velocity / time
+	var true_accel: float = ACCEL * get_tile_friction()
+	var max_speed: float = SPEED / get_tile_friction()
 	
 	# direction player is trying to move
 	#    left=-1, not moving=0, right=1
@@ -31,12 +34,12 @@ func _physics_process(delta):
 	
 	# if moving, we accelerate in that direction
 	if direction != 0:
-		velocity.x += direction * ACCEL * get_tile_friction() * delta
-		velocity.x = clamp(velocity.x, -SPEED, SPEED)
+		velocity.x += direction * true_accel * delta
+		velocity.x = clamp(velocity.x, -max_speed, max_speed)
 	
 	# otherwise slow the player down
 	else:
-		velocity.x = move_toward(velocity.x, 0, ACCEL*get_tile_friction()*delta)
+		velocity.x = move_toward(velocity.x, 0, true_accel*delta)
 		
 	move_and_slide() # moves and collides player based on velocity
 
