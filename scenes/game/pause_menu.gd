@@ -8,14 +8,15 @@ var paused: bool = false
 	#continue_button.grab_focus()
 
 func pause_game():
-	$ButtonSound.play()
+	MenuSounds.play_button_press()
 	get_tree().paused = true
 	continue_button.grab_focus()
 	show()
 	
 func continue_game():
-	$ButtonSound.play()
+	MenuSounds.play_button_press()
 	hide()
+	paused = false
 	get_tree().paused = false
 
 func _process(_delta):
@@ -23,10 +24,9 @@ func _process(_delta):
 		paused = true
 		return
 	if (Input.is_action_just_pressed("ui_cancel")):
-		paused = false
 		continue_game()
 
 
 func _on_quit_button_pressed():
-	$ButtonSound.play()
+	MenuSounds.play_button_press()
 	get_tree().quit()

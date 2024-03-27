@@ -15,6 +15,10 @@ run/main_scene="res://scenes/start_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/art/icon.svg"
 
+[autoload]
+
+MenuSounds="*res://scenes/game/menu_sounds.tscn"
+
 [display]
 
 window/size/viewport_width=1280

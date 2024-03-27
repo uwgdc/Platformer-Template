@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drr2gb7r6v804"]
+
+[ext_resource type="Script" path="res://scenes/game/menu_sounds.gd" id="1_h6rt1"]
+[ext_resource type="AudioStream" uid="uid://btkkuhlupguyf" path="res://assets/audio/MI_SFX 03.wav" id="1_pb8s3"]
+
+[node name="MenuSounds" type="Node"]
+process_mode = 3
+script = ExtResource("1_h6rt1")
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_pb8s3")
