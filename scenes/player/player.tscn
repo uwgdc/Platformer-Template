@@ -107,7 +107,8 @@ position = Vector2(0, 8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntf1i")
 animation = &"fall"
-speed_scale = 1.2
+speed_scale = 1.8
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 21.5)

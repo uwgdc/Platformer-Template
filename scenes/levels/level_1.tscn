@@ -27,4 +27,4 @@ position = Vector2(7520, 576)
 to_level = "res://scenes/levels/level_2.tscn"
 
 [node name="Player" parent="." instance=ExtResource("5_6kbcg")]
-position = Vector2(328, 1064)
+position = Vector2(208, 1040)

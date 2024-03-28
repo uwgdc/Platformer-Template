@@ -4,8 +4,13 @@ extends Area2D
 var player: Player
 var level: Level
 
+# Level objects can be interactable
+#  When the player touches the object, an arrow appears and allows the player
+#  to interact with it
+#  The interaction is determinted by interact()  (eg see doorway.gd)
+
 @export var interactable: bool = false	
-@export var indicator_offset: int = 0
+@export var indicator_offset: int = 0  # relative position of indicator to object
 var can_interact: bool = false
 var indicator_scene = preload("res://scenes/level_objects/indicator.tscn")
 var indicator: Node
