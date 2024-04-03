@@ -7,7 +7,7 @@ var screen_size: Vector2i
 var game_scene: PackedScene = preload("res://scenes/game/game.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	# Make the window a bit bigger on startup
 	screen_size = DisplayServer.screen_get_size()
 	window_size = Vector2i(round(screen_size[0]*0.7),
@@ -19,10 +19,10 @@ func _ready():
 	start_button.grab_focus()
 
 
-func _on_start_button_pressed():
+func _on_start_button_pressed() -> void:
 	MenuSounds.play_button_press()
 	get_tree().change_scene_to_packed(game_scene)
 
-func _on_quit_button_pressed():
+func _on_quit_button_pressed() -> void:
 	MenuSounds.play_button_press()
 	get_tree().quit()

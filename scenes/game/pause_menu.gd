@@ -4,23 +4,23 @@ extends MarginContainer
 # (see Node->Process->Mode in the inspector)
 
 var paused: bool = false
-@onready var continue_button = $MarginContainer/VBoxContainer/ContinueButton
+@onready var continue_button := $MarginContainer/VBoxContainer/ContinueButton
 
 # called from game
-func pause_game():
+func pause_game() -> void:
 	MenuSounds.play_button_press()
 	get_tree().paused = true
 	continue_button.grab_focus()  # lets us use arrow keys
 	show()
 	
 # called from ContinueButton via signal
-func continue_game():
+func continue_game() -> void:
 	MenuSounds.play_button_press()
 	hide()
 	paused = false
 	get_tree().paused = false
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if !paused:
 		paused = true
 		return
@@ -29,6 +29,6 @@ func _process(_delta):
 		continue_game()
 
 # called from QuitButton via signal
-func _on_quit_button_pressed():
+func _on_quit_button_pressed() -> void:
 	MenuSounds.play_button_press()
 	get_tree().quit()

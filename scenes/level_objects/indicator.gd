@@ -1,9 +1,9 @@
 extends Sprite2D
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player := $AnimationPlayer
 
-func appear():
+func appear() -> void:
 	animation_player.play("appear")
 	
-func disappear():
+func disappear() -> void:
 	animation_player.play("disappear")

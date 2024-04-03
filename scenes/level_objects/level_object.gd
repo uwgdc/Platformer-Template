@@ -12,11 +12,11 @@ var level: Level
 @export var interactable: bool = false	
 @export var indicator_offset: int = 0  # relative position of indicator to object
 var can_interact: bool = false
-var indicator_scene = preload("res://scenes/level_objects/indicator.tscn")
+var indicator_scene := preload("res://scenes/level_objects/indicator.tscn")
 var indicator: Node
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	if (interactable):
 		body_entered.connect(_on_body_entered)
 		body_exited.connect(_on_body_exited)
@@ -25,19 +25,19 @@ func _ready():
 		indicator.position[1] -= indicator_offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if can_interact and Input.is_action_just_pressed("interact"):
 		interaction()
 
-func _on_body_entered(body: Node2D):
+func _on_body_entered(body: Node2D) -> void:
 	if body == player:
 		indicator.appear()
 		can_interact = true
 
-func _on_body_exited(body: Node2D):
+func _on_body_exited(body: Node2D) -> void:
 	if body == player:
 		indicator.disappear()	
 		can_interact = false
 	
-func interaction():
+func interaction() -> void:
 	pass

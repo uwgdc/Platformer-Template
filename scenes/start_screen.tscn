@@ -8,7 +8,6 @@
 
 [node name="StartScreen" type="Node"]
 script = ExtResource("1_p2v3d")
-game_path = "res://scenes/game/game.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1280.0

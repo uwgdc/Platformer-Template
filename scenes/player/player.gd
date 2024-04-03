@@ -5,18 +5,18 @@ class_name Player
 @export var SPEED: float = 400
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
 @export var JUMP_VELOCITY: float = -700 # (negative is up, positive is down)
-@export var GRAVITY = 1200
+@export var GRAVITY: float = 1200
 
 # for friction
 var tile_map: TileMap = null
-@onready var tile_collider = $TileCollider
-var friction = 1;
+@onready var tile_collider := $TileCollider
+var friction: float = 1
 
-func _ready():
+func _ready() -> void:
 	$AnimatedSprite2D.play()
 
 # Handles player input and movement
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	
 	# VERTICAL MOVEMENT
 	# --------------------------------------------
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	
 	# direction player is trying to move
 	#    left=-1, not moving=0, right=1
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction := Input.get_axis("move_left", "move_right")
 	
 	# if moving, we accelerate in that direction
 	if (direction != 0):
@@ -87,6 +87,6 @@ func get_tile_friction() -> float:
 	var tile_cell_pos: Vector2i = tile_map.local_to_map(tile_collider.global_position)
 	var tile_data: TileData = tile_map.get_cell_tile_data(0, tile_cell_pos)
 	if tile_data:
-		var friction = tile_data.get_custom_data("friction")
-		return(friction)
+		var tile_friction: float = tile_data.get_custom_data("friction")
+		return(tile_friction)
 	return -1
