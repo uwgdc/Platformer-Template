@@ -14,7 +14,7 @@ func _ready() -> void:
 						   round(screen_size[0]*0.7)*window_size[1]/window_size[0])
 	DisplayServer.window_set_size(window_size)
 	DisplayServer.window_set_position(screen_size/2 - window_size/2)
-	
+
 	# lets us use arrow keys
 	start_button.grab_focus()
 

@@ -9,7 +9,7 @@ var level: Level
 #  to interact with it
 #  The interaction is determinted by interact()  (eg see doorway.gd)
 
-@export var interactable: bool = false	
+@export var interactable: bool = false
 @export var indicator_offset: int = 0  # relative position of indicator to object
 var can_interact: bool = false
 var indicator_scene := preload("res://scenes/level_objects/indicator.tscn")
@@ -36,8 +36,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body == player:
-		indicator.disappear()	
+		indicator.disappear()
 		can_interact = false
-	
+
 func interaction() -> void:
 	pass

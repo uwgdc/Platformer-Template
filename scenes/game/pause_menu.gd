@@ -12,7 +12,7 @@ func pause_game() -> void:
 	get_tree().paused = true
 	continue_button.grab_focus()  # lets us use arrow keys
 	show()
-	
+
 # called from ContinueButton via signal
 func continue_game() -> void:
 	MenuSounds.play_button_press()

@@ -4,6 +4,6 @@ extends Sprite2D
 
 func appear() -> void:
 	animation_player.play("appear")
-	
+
 func disappear() -> void:
 	animation_player.play("disappear")

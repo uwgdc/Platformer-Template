@@ -10,7 +10,7 @@ func _ready() -> void:
 		if (child is LevelObject):
 			child.player = $Player
 			child.level = self
-			
+
 	# Give the player a reference to the tile map
 	$Player.tile_map = $LevelTileMap
 
@@ -28,7 +28,7 @@ func get_limits() -> Rect2i:
 	limits.position.y *= tile_size.y
 	limits.end.x *= tile_size.x
 	limits.end.y *= tile_size.y
-	
+
 	return limits
 
 # get position of the center of the camera

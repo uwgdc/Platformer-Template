@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # Handles player input and movement
 func _physics_process(delta: float) -> void:
-	
+
 	# VERTICAL MOVEMENT
 	# --------------------------------------------
 	# Add gravity if in the air
@@ -38,15 +38,15 @@ func _physics_process(delta: float) -> void:
 			friction = get_tile_friction()
 	else:
 		friction = 1
-		
+
 	var accel: float = SPEED/ACCEL_TIME  # acceleration = velocity / time
 	var true_accel: float = accel * friction  # less friction less acceleration
 	var max_speed: float = SPEED / friction   # less friction more speed
-	
+
 	# direction player is trying to move
 	#    left=-1, not moving=0, right=1
 	var direction := Input.get_axis("move_left", "move_right")
-	
+
 	# if moving, we accelerate in that direction
 	if (direction != 0):
 		if (direction > 0 and velocity.x < max_speed) or \
@@ -54,12 +54,12 @@ func _physics_process(delta: float) -> void:
 		   is_on_floor():
 			velocity.x += direction * true_accel * delta
 			velocity.x = clamp(velocity.x, -max_speed, max_speed)
-	
+
 	# otherwise slow the player down
 	else:
 		velocity.x = move_toward(velocity.x, 0, true_accel*delta)
-	
-	
+
+
 	# ANIMATION
 	# -------------------------------------------------
 	if (is_on_floor()):
@@ -73,8 +73,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "fall"
 	if (direction != 0):
 		$AnimatedSprite2D.flip_h = direction == -1
-			
-		
+
+
 	move_and_slide() # moves and collides player based on velocity
 
 
