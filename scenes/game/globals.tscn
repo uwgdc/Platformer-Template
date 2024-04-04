@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://drr2gb7r6v804"]
+
+[ext_resource type="Script" path="res://scenes/game/globals.gd" id="1_yjsob"]
+[ext_resource type="AudioStream" uid="uid://btkkuhlupguyf" path="res://assets/audio/MI_SFX 03.wav" id="2_y1i8u"]
+[ext_resource type="PackedScene" uid="uid://ykbwcdb7yt61" path="res://scenes/game/pause_menu.tscn" id="3_ag4vt"]
+
+[node name="global" type="Node"]
+process_mode = 3
+script = ExtResource("1_yjsob")
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_ag4vt")]
+visible = false
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_y1i8u")
+volume_db = -14.053

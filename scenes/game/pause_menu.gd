@@ -1,34 +1,31 @@
-extends MarginContainer
+extends CanvasLayer
 
 # Its a pause menu, runs when the tree is set to paused
 # (see Node->Process->Mode in the inspector)
 
-var paused: bool = false
-@onready var continue_button := $MarginContainer/VBoxContainer/ContinueButton
+@onready var continue_button := $MarginContainer/MarginContainer/VBoxContainer/ContinueButton
+	
 
-# called from game
-func pause_game() -> void:
-	MenuSounds.play_button_press()
-	get_tree().paused = true
-	continue_button.grab_focus()  # lets us use arrow keys
+func initialize_pause() -> void:
 	show()
+	continue_button.grab_focus()  # lets us use arrow keys
 
-# called from ContinueButton via signal
-func continue_game() -> void:
-	MenuSounds.play_button_press()
-	hide()
-	paused = false
-	get_tree().paused = false
 
-func _process(_delta: float) -> void:
-	if !paused:
-		paused = true
-		return
-	# lets us unpause with escape
-	if (Input.is_action_just_pressed("ui_cancel")):
-		continue_game()
+func _input(event: InputEvent) -> void:
+	# unpause on ui_cancel
+	if event.is_action_pressed("ui_cancel"):
+		_on_continue_button_pressed()
+		get_viewport().set_input_as_handled()
+
 
 # called from QuitButton via signal
 func _on_quit_button_pressed() -> void:
-	MenuSounds.play_button_press()
+	Global.play_button_press_sound()
 	get_tree().quit()
+
+
+# called from ContinueButton via signal, or from above when ui_cancel is pressed
+func _on_continue_button_pressed() -> void:
+	Global.play_button_press_sound()
+	hide()
+	Global.unpause_game()

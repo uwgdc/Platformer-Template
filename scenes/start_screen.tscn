@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm4ujsqb0cnga"]
+[gd_scene load_steps=5 format=3 uid="uid://dm4ujsqb0cnga"]
 
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_p2v3d"]
 [ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://assets/art/background.png" id="2_dfp3l"]
 [ext_resource type="Theme" uid="uid://oil57l5gkkxg" path="res://resources/themes/header_text.tres" id="3_pn8o3"]
 [ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://resources/themes/button_theme.tres" id="4_vmdlk"]
-[ext_resource type="AudioStream" uid="uid://btkkuhlupguyf" path="res://assets/audio/MI_SFX 03.wav" id="5_2v3na"]
 
 [node name="StartScreen" type="Node"]
 script = ExtResource("1_p2v3d")
@@ -52,9 +51,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_vmdlk")
 text = "Quit"
-
-[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_2v3na")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

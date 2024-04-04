@@ -4,7 +4,7 @@ var screen_size: Vector2i
 @onready var window_size: Vector2i = DisplayServer.window_get_size()
 @onready var start_button: Button = $MarginContainer/VBoxContainer/VBoxContainer/StartButton
 
-var game_scene: PackedScene = preload("res://scenes/game/game.tscn")
+var game_scene: PackedScene = preload("res://scenes/levels/level_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,9 +20,11 @@ func _ready() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	MenuSounds.play_button_press()
-	get_tree().change_scene_to_packed(game_scene)
+	Global.play_button_press_sound()
+	Global.change_level(game_scene)
+
 
 func _on_quit_button_pressed() -> void:
-	MenuSounds.play_button_press()
+	Global.play_button_press_sound()
 	get_tree().quit()
+

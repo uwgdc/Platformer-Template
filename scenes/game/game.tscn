@@ -1,11 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0djq6tpy0vqa"]
+[gd_scene load_steps=4 format=3 uid="uid://xtwf404fh5jw"]
 
-[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_1sbk6"]
 [ext_resource type="PackedScene" uid="uid://ccfeafxfacx8i" path="res://scenes/levels/level_1.tscn" id="1_esi5o"]
 [ext_resource type="PackedScene" uid="uid://ykbwcdb7yt61" path="res://scenes/game/pause_menu.tscn" id="3_5wi2o"]
 
+[sub_resource type="GDScript" id="GDScript_p2vdi"]
+script/source = "extends Node
+
+@onready var current_level: Level
+
+# Press escape to pause
+# Everything else doesn't run when paused
+func _process(_delta: float) -> void:
+	if (Input.is_action_just_pressed(\"ui_cancel\")):
+		$PauseMenu.position = current_level.get_camera_position()
+		$PauseMenu.pause_game()
+"
+
 [node name="Game" type="Node"]
-script = ExtResource("1_1sbk6")
+script = SubResource("GDScript_p2vdi")
 
 [node name="Level1" parent="." instance=ExtResource("1_esi5o")]
 

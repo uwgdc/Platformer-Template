@@ -17,7 +17,11 @@ config/icon="res://assets/art/icon.svg"
 
 [autoload]
 
-MenuSounds="*res://scenes/game/menu_sounds.tscn"
+Global="*res://scenes/game/globals.tscn"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
 
 [display]
 

@@ -1,8 +1,6 @@
 extends Node
 class_name Level
 
-signal level_changed(level_name: PackedScene)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Gives the level objects references to the player and the level
@@ -16,9 +14,18 @@ func _ready() -> void:
 
 	$Camera2D.set_limits(get_limits())
 
-# center camera on the player
+func _input(event):
+	# pause button pressed!
+	if event.is_action_pressed("ui_cancel"):
+		Global.play_button_press_sound()
+		Global.pause_game()
+		get_viewport().set_input_as_handled()
+
+
 func _process(_delta: float) -> void:
+	# center camera on the player
 	$Camera2D.global_position = $Player.position
+
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:
@@ -31,7 +38,3 @@ func get_limits() -> Rect2i:
 
 	return limits
 
-# get position of the center of the camera
-func get_camera_position() -> Vector2i:
-	return $Camera2D.get_screen_center_position() -  \
-		   (get_viewport().content_scale_size as Vector2) / 2
