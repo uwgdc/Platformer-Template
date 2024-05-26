@@ -3,19 +3,17 @@ extends Node
 # Autoloaded global scene
 # can be called from any node at any time
 
+# this signal is unused for now, it fires whenever we change level.
+# use it to implement something like a score counter!
 signal level_changed(level: PackedScene)
 
 
 func play_button_press_sound() -> void:
-	$ButtonSound.play()
-
-
-func change_scene(scene: PackedScene) -> void:
-	get_tree().change_scene_to_packed(scene)
+	$ButtonSound.play()	
 
 
 func change_level(level: PackedScene) -> void:
-	change_scene(level)
+	get_tree().change_scene_to_packed(level)
 	level_changed.emit(level)
 
 
