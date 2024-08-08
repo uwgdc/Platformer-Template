@@ -64,6 +64,13 @@ select={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="collision0"
+2d_physics/layer_2="collision1"
+2d_physics/layer_3="collision2"
+2d_physics/layer_4="hurt"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

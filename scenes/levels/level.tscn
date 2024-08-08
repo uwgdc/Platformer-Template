@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://kmi8quvtnaa1"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_02dsu"]
+[ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://assets/art/background.png" id="2_se2tx"]
+[ext_resource type="PackedScene" uid="uid://cxsrdo3dax7kl" path="res://scenes/levels/level_tile_map.tscn" id="3_s17ow"]
+[ext_resource type="Script" path="res://scenes/levels/camera.gd" id="4_0gqqb"]
+[ext_resource type="PackedScene" uid="uid://d4n1kp3j8smdl" path="res://scenes/player/player.tscn" id="5_7qipm"]
+[ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://resources/themes/normal_text.tres" id="6_wcg1p"]
+[ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://resources/themes/button_theme.tres" id="7_ibphr"]
+[ext_resource type="AudioStream" uid="uid://bfcx2aacvebi5" path="res://assets/audio/level_clear.wav" id="8_1fmqx"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_02dsu")
+
+[node name="TickTimer" type="Timer" parent="."]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 688.0
+offset_bottom = 384.0
+texture = ExtResource("2_se2tx")
+stretch_mode = 1
+
+[node name="LevelTileMap" parent="." instance=ExtResource("3_s17ow")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("4_0gqqb")
+
+[node name="Player" parent="." instance=ExtResource("5_7qipm")]
+position = Vector2(96, 136)
+
+[node name="ClearScreen" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ClearScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.109804)
+
+[node name="CenterContainer" type="CenterContainer" parent="ClearScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ClearScreen/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ClearScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wcg1p")
+text = "Level Cleared!"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Button" type="Button" parent="ClearScreen/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(273.06, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_ibphr")
+text = "Next Level"
+
+[node name="WinSound" type="AudioStreamPlayer" parent="ClearScreen"]
+unique_name_in_owner = true
+stream = ExtResource("8_1fmqx")
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
+[connection signal="player_dead" from="Player" to="." method="_on_player_player_dead"]
+[connection signal="pressed" from="ClearScreen/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

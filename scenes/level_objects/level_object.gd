@@ -9,17 +9,17 @@ var level: Level
 #  to interact with it
 #  The interaction is determinted by interact()  (eg see doorway.gd)
 
-@export var interactable: bool = false
-@export var indicator_offset: int = 0  # relative position of indicator to object
+var interactable: bool = false
+var indicator_offset: int = 0  # relative position of indicator to object
 var can_interact: bool = false
 var indicator_scene := preload("res://scenes/level_objects/indicator.tscn")
 var indicator: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 	if (interactable):
-		body_entered.connect(_on_body_entered)
-		body_exited.connect(_on_body_exited)
 		indicator = indicator_scene.instantiate()
 		add_child(indicator)
 		indicator.position[1] -= indicator_offset
@@ -30,12 +30,12 @@ func _process(_delta: float) -> void:
 		interaction()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == player:
+	if interactable and body == player:
 		indicator.appear()
 		can_interact = true
 
 func _on_body_exited(body: Node2D) -> void:
-	if body == player:
+	if interactable and body == player:
 		indicator.disappear()
 		can_interact = false
 

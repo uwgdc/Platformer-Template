@@ -5,7 +5,9 @@ class_name Player
 @export var SPEED: float = 400
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
 @export var JUMP_VELOCITY: float = -700 # (negative is up, positive is down)
-@export var GRAVITY: float = 1200
+@export var JUMP_GRAVITY: float = 1200
+@export var FALL_GRAVITY: float = 1500
+var jump_held = false
 
 # for friction
 var tile_map: TileMap = null
@@ -22,12 +24,20 @@ func _physics_process(delta: float) -> void:
 	# --------------------------------------------
 	# Add gravity if in the air
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+		if (velocity.y <= 0):
+			velocity.y += JUMP_GRAVITY * delta
+		else:
+			velocity.y += FALL_GRAVITY * delta
 
 	# Handle jump if on the ground
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		$JumpSound.play()
 		velocity.y = JUMP_VELOCITY
+		jump_held = true
+		
+	if Input.is_action_just_released("jump") and jump_held:
+		velocity.y = 0
+		jump_held = false
 
 
 	# HORIZONTAL MOVEMENT
@@ -58,7 +68,9 @@ func _physics_process(delta: float) -> void:
 	# otherwise slow the player down
 	else:
 		velocity.x = move_toward(velocity.x, 0, true_accel*delta)
-
+		
+	if (jump_held and velocity.y >= 0):
+		jump_held = false
 
 	# ANIMATION
 	# -------------------------------------------------
@@ -73,10 +85,31 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "fall"
 	if (direction != 0):
 		$AnimatedSprite2D.flip_h = direction == -1
-
-
+		
+	
 	move_and_slide() # moves and collides player based on velocity
+	
+	#TODO: JANK
+	# hurt by spike
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var collider = collision.get_collider()
+		if (collider is TileMap):
+			var tile_cell_pos: Vector2i = collider.local_to_map(collision.get_position())
+			var tile_data: TileData = collider.get_cell_tile_data(0, tile_cell_pos)
+			if tile_data:
+				var hurts: bool = tile_data.get_custom_data("hurt")
+				if (hurts):
+					hurt()
 
+signal player_dead
+func hurt() -> void:
+	$HitSound.play()
+	player_dead.emit()
+	
+func flip_collision():
+	set_collision_mask_value(2, !get_collision_mask_value(2))	
+	set_collision_mask_value(3, !get_collision_mask_value(3))	
 
 # get friction (custom data value) of tile directly below player
 # returns friction as a percentage were 1.0 is normal friction

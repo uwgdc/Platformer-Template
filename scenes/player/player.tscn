@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4n1kp3j8smdl"]
+[gd_scene load_steps=18 format=3 uid="uid://d4n1kp3j8smdl"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_mvwvm"]
 [ext_resource type="Texture2D" uid="uid://dlmlqhiu6yxf6" path="res://assets/art/player_fall.png" id="2_outkx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cs3n2acm175dr" path="res://assets/art/player_idle.png" id="3_grlim"]
 [ext_resource type="AudioStream" uid="uid://ce88tea7vago6" path="res://assets/audio/MI_SFX 44.wav" id="3_xbqkc"]
 [ext_resource type="Texture2D" uid="uid://dmbk25hgsnlfv" path="res://assets/art/player_jump.png" id="4_uce6f"]
+[ext_resource type="AudioStream" uid="uid://dw58fb5f3i84h" path="res://assets/audio/classic_hurt.mp3" id="7_83mw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwnan"]
 atlas = ExtResource("3_2ki34")
@@ -99,6 +100,7 @@ animations = [{
 size = Vector2(54, 101)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_mvwvm")
 JUMP_VELOCITY = -600.0
 
@@ -119,3 +121,6 @@ position = Vector2(0, 78)
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_xbqkc")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_83mw2")
