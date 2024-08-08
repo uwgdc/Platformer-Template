@@ -47,7 +47,8 @@ func _process(_delta: float) -> void:
 	for i in range(0, 3):
 		if (!tik_flags[i] and $TickTimer.time_left <= (i+1) * flip_timer/4):
 			tik_flags[i] = true
-			$SmallTickSound.play()
+			if $SmallTickSound:
+				$SmallTickSound.play()
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:
@@ -84,7 +85,8 @@ const pinkTilesheets = [preload("res://assets/art/flip_block_pink_off_tilesheet.
 var tick : bool = 0
 func _on_tick_timer_timeout():
 	tik_flags = [false, false, false]
-	$BigTickSound.play()
+	if $BigTickSound:
+		$BigTickSound.play()
 	
 	tick = !tick 
 	var ts : TileSet = $LevelTileMap.tile_set
