@@ -5,8 +5,12 @@ class_name Player
 @export var SPEED: float = 400
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
 @export var JUMP_VELOCITY: float = -700 # (negative is up, positive is down)
-@export var JUMP_GRAVITY: float = 1200
+@export var JUMP_GRAVITY_MIN: float = 1200  # Short press
+@export var JUMP_GRAVITY_MAX: float = 1500  # Long press
 @export var FALL_GRAVITY: float = 1500  # fall faster than you rise
+
+const max_jump_held_time := 0.3
+var jump_held_timer := 0.0
 var jump_held := false                  # if jump button is held
 
 # for friction
@@ -22,12 +26,21 @@ func _physics_process(delta: float) -> void:
 
 	# VERTICAL MOVEMENT
 	# --------------------------------------------
+	if jump_held:
+		jump_held_timer += delta
+	
 	# Add gravity if in the air
 	if not is_on_floor():
+		var grav := 0.0
 		if (velocity.y <= 0):
-			velocity.y += JUMP_GRAVITY * delta
+			# variable jump height, based on holding jump
+			grav = clamp(lerp(JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX, 
+							  jump_held_timer/max_jump_held_time),
+						 JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX)
 		else:
-			velocity.y += FALL_GRAVITY * delta
+			grav = FALL_GRAVITY
+
+		velocity.y += grav * delta
 
 	# Handle jump if on the ground
 	if Input.is_action_just_pressed("jump") and is_on_floor():
