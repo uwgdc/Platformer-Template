@@ -11,6 +11,7 @@
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_02dsu")
+flip_timer = 1.5
 
 [node name="TickTimer" type="Timer" parent="."]
 

@@ -10,7 +10,7 @@ class_name Player
 var jump_held := false                  # if jump button is held
 
 # for friction
-var tile_map: TileMap = null
+var tile_map_layer: TileMapLayer = null
 @onready var tile_collider := $TileCollider
 var friction: float = 1
 
@@ -114,10 +114,10 @@ func flip_collision():
 # returns friction as a percentage were 1.0 is normal friction
 # if there is no tile, return -1
 func get_tile_friction() -> float:
-	if tile_map == null:
+	if tile_map_layer == null:
 		return -1
-	var tile_cell_pos: Vector2i = tile_map.local_to_map(tile_collider.global_position)
-	var tile_data: TileData = tile_map.get_cell_tile_data(0, tile_cell_pos)
+	var tile_cell_pos: Vector2i = tile_map_layer.local_to_map(tile_collider.global_position)
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(tile_cell_pos)
 	if tile_data:
 		var tile_friction: float = tile_data.get_custom_data("friction")
 		return(tile_friction)

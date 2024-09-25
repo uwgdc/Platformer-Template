@@ -21,14 +21,14 @@ func _ready() -> void:
 			child.player = $Player
 			child.level = self
 			
-	$LevelTileMap.update_internals()
+	#$LevelTileMap.update_internals()
 	for child in $LevelTileMap.get_children():
 		if (child is LevelObject):
 			child.player = $Player
 			child.level = self
 
 	# Give the player a reference to the tile map
-	$Player.tile_map = $LevelTileMap
+	$Player.tile_map_layer = $LevelTileMap
 
 	$Camera2D.set_limits(get_limits())
 
@@ -96,4 +96,3 @@ func _on_tick_timer_timeout():
 	var ts : TileSet = $LevelTileMap.tile_set
 	ts.get_source(ts.get_source_id(2)).texture = greenTilesheets[int(!tick)]
 	ts.get_source(ts.get_source_id(3)).texture = pinkTilesheets[int(tick)]
-
