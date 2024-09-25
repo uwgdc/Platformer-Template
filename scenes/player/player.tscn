@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4n1kp3j8smdl"]
+[gd_scene load_steps=19 format=3 uid="uid://d4n1kp3j8smdl"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_mvwvm"]
 [ext_resource type="Texture2D" uid="uid://dlmlqhiu6yxf6" path="res://assets/art/player_fall.png" id="2_outkx"]
@@ -99,6 +99,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucb8u"]
 size = Vector2(54, 101)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0smu"]
+size = Vector2(46, 85)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_mvwvm")
@@ -124,3 +127,14 @@ stream = ExtResource("3_xbqkc")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_83mw2")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 21.5)
+shape = SubResource("RectangleShape2D_m0smu")
+debug_color = Color(0.854902, 0.317647, 0.470588, 0.419608)
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

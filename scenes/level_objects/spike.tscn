@@ -1,7 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnhn34fdlf6yq"]
+[gd_scene load_steps=4 format=3 uid="uid://jv7xyp2xx7mc"]
 
-[ext_resource type="Script" path="res://scenes/level_objects/spike.gd" id="1_p5r43"]
 [ext_resource type="Texture2D" uid="uid://dtg8dqwshw54l" path="res://assets/art/spike.png" id="2_i2tt0"]
+
+[sub_resource type="GDScript" id="GDScript_qkc0q"]
+script/source = "extends LevelObject
+
+func _ready():
+	interactable = false
+	super()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body == player:
+		player.hurt()
+
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymgv2"]
 size = Vector2(46, 52)
@@ -9,7 +21,7 @@ size = Vector2(46, 52)
 [node name="Spike" type="Area2D"]
 collision_layer = 9
 collision_mask = 9
-script = ExtResource("1_p5r43")
+script = SubResource("GDScript_qkc0q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_i2tt0")

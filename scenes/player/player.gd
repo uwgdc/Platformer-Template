@@ -122,3 +122,7 @@ func get_tile_friction() -> float:
 		var tile_friction: float = tile_data.get_custom_data("friction")
 		return(tile_friction)
 	return -1
+
+
+func _on_hurt_box_body_entered(body):
+	hurt()
