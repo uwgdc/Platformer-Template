@@ -6,8 +6,8 @@ class_name Player
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
 @export var JUMP_VELOCITY: float = -700 # (negative is up, positive is down)
 @export var JUMP_GRAVITY: float = 1200
-@export var FALL_GRAVITY: float = 1500
-var jump_held = false
+@export var FALL_GRAVITY: float = 1500  # fall faster than you rise
+var jump_held := false                  # if jump button is held
 
 # for friction
 var tile_map: TileMap = null
@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump") and jump_held:
 		velocity.y = 0
 		jump_held = false
-
 
 	# HORIZONTAL MOVEMENT
 	# -------------------------------------------------
@@ -93,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	# hurt by spike
 	for index in get_slide_collision_count():
 		var collision := get_slide_collision(index)
-		var collider = collision.get_collider()
+		var collider := collision.get_collider()
 		if (collider is TileMap):
 			var tile_cell_pos: Vector2i = collider.local_to_map(collision.get_position())
 			var tile_data: TileData = collider.get_cell_tile_data(0, tile_cell_pos)

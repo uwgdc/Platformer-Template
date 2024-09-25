@@ -52,14 +52,18 @@ func _process(_delta: float) -> void:
 
 # return the boundaries of the level
 func get_limits() -> Rect2i:
-	var limits: Rect2i = $LevelTileMap.get_used_rect()
+	# rectangle used by tileset in tile units
+	var used_rect: Rect2i = $LevelTileMap.get_used_rect()
 	var tile_size: Vector2i = $LevelTileMap.tile_set.tile_size
-	limits.position.x *= tile_size.x
-	limits.position.y *= tile_size.y
-	limits.end.x *= tile_size.x
-	limits.end.y *= tile_size.y
+	
+	print(used_rect)
+	used_rect.position.x *= tile_size.x
+	used_rect.position.y *= tile_size.y
+	used_rect.size.x *= tile_size.x
+	used_rect.size.y *= tile_size.y
 
-	return limits
+	print(used_rect)
+	return used_rect
 
 # loads the next level scene and bring up level cleared screen
 func level_cleared(level_path : String) -> void:
