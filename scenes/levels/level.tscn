@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kmi8quvtnaa1"]
+[gd_scene load_steps=11 format=3 uid="uid://kmi8quvtnaa1"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_02dsu"]
 [ext_resource type="Texture2D" uid="uid://do3u01fttefc" path="res://assets/art/background.png" id="2_se2tx"]
@@ -8,6 +8,8 @@
 [ext_resource type="Theme" uid="uid://qseykuvemo1o" path="res://resources/themes/normal_text.tres" id="6_wcg1p"]
 [ext_resource type="Theme" uid="uid://cnrdyrlmhr3x0" path="res://resources/themes/button_theme.tres" id="7_ibphr"]
 [ext_resource type="AudioStream" uid="uid://bfcx2aacvebi5" path="res://assets/audio/level_clear.wav" id="8_1fmqx"]
+[ext_resource type="AudioStream" uid="uid://ddcdrs6xkc0hr" path="res://assets/audio/tik.wav" id="9_biu4a"]
+[ext_resource type="AudioStream" uid="uid://bc3p7clretgle" path="res://assets/audio/tok.wav" id="10_pwnlk"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_02dsu")
@@ -70,6 +72,12 @@ text = "Next Level"
 [node name="WinSound" type="AudioStreamPlayer" parent="ClearScreen"]
 unique_name_in_owner = true
 stream = ExtResource("8_1fmqx")
+
+[node name="SmallTickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_biu4a")
+
+[node name="BigTickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_pwnlk")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
 [connection signal="player_dead" from="Player" to="." method="_on_player_player_dead"]

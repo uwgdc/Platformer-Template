@@ -6,10 +6,10 @@ class_name Player
 @export var ACCEL_TIME: float = 0.2  # time to full speed in seconds
 @export var JUMP_VELOCITY: float = -700 # (negative is up, positive is down)
 @export var JUMP_GRAVITY_MIN: float = 1200  # Short press
-@export var JUMP_GRAVITY_MAX: float = 1500  # Long press
+@export var JUMP_GRAVITY_MAX: float = 3600  # Long press
 @export var FALL_GRAVITY: float = 1500  # fall faster than you rise
 
-const max_jump_held_time := 0.3
+const max_jump_held_time := 1.0
 var jump_held_timer := 0.0
 var jump_held := false                  # if jump button is held
 
@@ -33,10 +33,13 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		var grav := 0.0
 		if (velocity.y <= 0):
-			# variable jump height, based on holding jump
-			grav = clamp(lerp(JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX, 
-							  jump_held_timer/max_jump_held_time),
-						 JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX)
+			if jump_held:
+				grav = JUMP_GRAVITY_MIN
+			else:
+				# variable jump height, based on holding jump
+				grav = clamp(lerp(JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX,
+								  1-jump_held_timer/max_jump_held_time),
+							 JUMP_GRAVITY_MIN, JUMP_GRAVITY_MAX)
 		else:
 			grav = FALL_GRAVITY
 
@@ -47,9 +50,9 @@ func _physics_process(delta: float) -> void:
 		$JumpSound.play()
 		velocity.y = JUMP_VELOCITY
 		jump_held = true
+		jump_held_timer = 0.0
 		
 	if Input.is_action_just_released("jump") and jump_held:
-		velocity.y = 0
 		jump_held = false
 
 	# HORIZONTAL MOVEMENT
@@ -83,6 +86,7 @@ func _physics_process(delta: float) -> void:
 		
 	if (jump_held and velocity.y >= 0):
 		jump_held = false
+		jump_held_timer = 0.0
 
 	# ANIMATION
 	# -------------------------------------------------
@@ -100,24 +104,14 @@ func _physics_process(delta: float) -> void:
 		
 	
 	move_and_slide() # moves and collides player based on velocity
-	
-	#TODO: JANK
-	# hurt by spike
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		var collider := collision.get_collider()
-		if (collider is TileMap):
-			var tile_cell_pos: Vector2i = collider.local_to_map(collision.get_position())
-			var tile_data: TileData = collider.get_cell_tile_data(0, tile_cell_pos)
-			if tile_data:
-				var hurts: bool = tile_data.get_custom_data("hurt")
-				if (hurts):
-					hurt()
 
 signal player_dead
 func hurt() -> void:
 	$HitSound.play()
 	player_dead.emit()
+
+func _on_hurt_box_body_entered(body):
+	hurt()
 	
 func flip_collision():
 	set_collision_mask_value(2, !get_collision_mask_value(2))	
@@ -135,7 +129,3 @@ func get_tile_friction() -> float:
 		var tile_friction: float = tile_data.get_custom_data("friction")
 		return(tile_friction)
 	return -1
-
-
-func _on_hurt_box_body_entered(body):
-	hurt()

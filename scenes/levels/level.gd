@@ -86,6 +86,7 @@ const greenTilesheets = [preload("res://assets/art/flip_block_green_off_tileshee
 const pinkTilesheets = [preload("res://assets/art/flip_block_pink_off_tilesheet.png"),
 						preload("res://assets/art/flip_block_pink_on_tilesheet.png")]
 
+# for flipping appearance of blocks
 var tick : bool = 0
 func _on_tick_timer_timeout():
 	tik_flags = [false, false, false]
