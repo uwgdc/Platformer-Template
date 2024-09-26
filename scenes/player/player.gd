@@ -140,6 +140,8 @@ func get_tile_friction() -> float:
 		return(tile_friction)
 	return -1
 	
-func set_knockback(knock : Vector2):
+func set_knockback(knock : Vector2) -> bool:
 	if knockback == Vector2.ZERO:
 		knockback = knock
+		return true
+	return false

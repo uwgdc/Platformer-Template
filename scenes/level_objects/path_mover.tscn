@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/level_objects/path_mover.gd" id="1_3lhu4"]
 
-[node name="MovingPlatform" type="Path2D"]
+[node name="PathMover" type="Path2D"]
 script = ExtResource("1_3lhu4")
 metadata/_edit_group_ = true
 
