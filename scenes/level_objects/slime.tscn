@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2jg8sal7ohw2"]
+
+[ext_resource type="Script" path="res://scenes/level_objects/slime.gd" id="1_4nt7e"]
+[ext_resource type="Texture2D" uid="uid://cv5ftdv3m5457" path="res://assets/art/objects_tilesheet.png" id="1_lu6uc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdkk4"]
+radius = 32.0
+
+[node name="Slime" type="Area2D"]
+script = ExtResource("1_4nt7e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lu6uc")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sdkk4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

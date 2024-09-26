@@ -1,22 +1,16 @@
-[gd_scene load_steps=8 format=4 uid="uid://dsshx7yfkt8nj"]
+[gd_scene load_steps=7 format=4 uid="uid://dsshx7yfkt8nj"]
 
 [ext_resource type="PackedScene" uid="uid://kmi8quvtnaa1" path="res://scenes/levels/level.tscn" id="1_47p55"]
 [ext_resource type="PackedScene" uid="uid://jwr35uhwma57" path="res://scenes/level_objects/doorway.tscn" id="2_egn4l"]
 [ext_resource type="PackedScene" uid="uid://vvam43ag8h3m" path="res://scenes/level_objects/checkpoint.tscn" id="3_m1pq4"]
-[ext_resource type="PackedScene" uid="uid://bor4swn0xlf3" path="res://scenes/level_objects/moving_platform.tscn" id="4_c8tx7"]
-[ext_resource type="PackedScene" uid="uid://ia7pv7eb6jfa" path="res://scenes/level_objects/moving_saw.tscn" id="5_olqcp"]
+[ext_resource type="PackedScene" uid="uid://kc8xk8s5lmnd" path="res://scenes/level_objects/moving_slime.tscn" id="5_dqhpl"]
+[ext_resource type="PackedScene" uid="uid://b2jg8sal7ohw2" path="res://scenes/level_objects/slime.tscn" id="6_vbs7r"]
 
-[sub_resource type="Curve2D" id="Curve2D_yr5l7"]
+[sub_resource type="Curve2D" id="Curve2D_8dg0e"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 192, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_ubdki"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -576, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0)
-}
-point_count = 4
 
 [node name="Level" instance=ExtResource("1_47p55")]
 
@@ -37,11 +31,9 @@ position = Vector2(224, 1120)
 [node name="Checkpoint" parent="." index="9" instance=ExtResource("3_m1pq4")]
 position = Vector2(1216, 1216)
 
-[node name="MovingPlatform" parent="." index="10" instance=ExtResource("4_c8tx7")]
-position = Vector2(192, 960)
-curve = SubResource("Curve2D_yr5l7")
+[node name="Slime" parent="." index="10" instance=ExtResource("6_vbs7r")]
+position = Vector2(352, 1120)
 
-[node name="MovingPlatform2" parent="." index="11" instance=ExtResource("5_olqcp")]
-position = Vector2(832, 1056)
-curve = SubResource("Curve2D_ubdki")
-SPEED = 200
+[node name="MovingSlime" parent="." index="11" instance=ExtResource("5_dqhpl")]
+position = Vector2(544, 1120)
+curve = SubResource("Curve2D_8dg0e")

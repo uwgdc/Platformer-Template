@@ -14,6 +14,8 @@ const max_jump_held_time := 1.0
 var jump_held_timer := 0.0
 var jump_held := false                  # if jump button is held
 
+var knockback := Vector2.ZERO
+
 # for friction
 var tile_map_layer: TileMapLayer = null
 @onready var tile_collider := $TileCollider
@@ -88,6 +90,10 @@ func _physics_process(delta: float) -> void:
 	if (jump_held and velocity.y >= 0):
 		jump_held = false
 		jump_held_timer = 0.0
+		
+	if (knockback != Vector2.ZERO):
+		velocity += knockback
+		knockback = Vector2.ZERO
 
 	# ANIMATION
 	# -------------------------------------------------
@@ -114,6 +120,9 @@ func hurt() -> void:
 func _on_hurt_box_body_entered(body):
 	hurt()
 	
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	hurt()
+	
 func flip_collision():
 	set_collision_mask_value(2, !get_collision_mask_value(2))	
 	set_collision_mask_value(3, !get_collision_mask_value(3))	
@@ -130,3 +139,7 @@ func get_tile_friction() -> float:
 		var tile_friction: float = tile_data.get_custom_data("friction")
 		return(tile_friction)
 	return -1
+	
+func set_knockback(knock : Vector2):
+	if knockback == Vector2.ZERO:
+		knockback = knock

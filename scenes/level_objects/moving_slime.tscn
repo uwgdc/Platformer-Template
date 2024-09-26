@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://kc8xk8s5lmnd"]
+
+[ext_resource type="PackedScene" uid="uid://2yiwjevow8cu" path="res://scenes/level_objects/path_mover.tscn" id="1_kyjrs"]
+[ext_resource type="PackedScene" uid="uid://b2jg8sal7ohw2" path="res://scenes/level_objects/slime.tscn" id="2_31xge"]
+
+[node name="MovingSlime" instance=ExtResource("1_kyjrs")]
+
+[node name="Slime" parent="." index="0" instance=ExtResource("2_31xge")]
+
+[node name="RemoteTransform2D" parent="PathFollow2D" index="0"]
+remote_path = NodePath("../../Slime")
