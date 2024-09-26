@@ -52,7 +52,7 @@ to_level = "res://scenes/levels/level_2.tscn"
 position = Vector2(2976, 640)
 
 [node name="Checkpoint" parent="." index="10" instance=ExtResource("3_m1pq4")]
-position = Vector2(1376, 832)
+position = Vector2(1376, 830)
 
 [node name="Checkpoint2" parent="." index="11" instance=ExtResource("3_m1pq4")]
 position = Vector2(2176, 832)
