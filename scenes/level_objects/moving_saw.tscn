@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ia7pv7eb6jfa"]
+
+[ext_resource type="PackedScene" uid="uid://2yiwjevow8cu" path="res://scenes/level_objects/path_mover.tscn" id="1_pxe8e"]
+[ext_resource type="PackedScene" uid="uid://brokwxc71enyh" path="res://scenes/level_objects/saw.tscn" id="2_yxj2l"]
+
+[node name="MovingPlatform" instance=ExtResource("1_pxe8e")]
+
+[node name="Saw" parent="." index="0" instance=ExtResource("2_yxj2l")]
+
+[node name="RemoteTransform2D" parent="PathFollow2D" index="0"]
+remote_path = NodePath("../../Saw")

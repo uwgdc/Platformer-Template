@@ -9,6 +9,7 @@ class_name Player
 @export var JUMP_GRAVITY_MAX: float = 3600  # Long press
 @export var FALL_GRAVITY: float = 1500  # fall faster than you rise
 
+const terminal_velocity := 800.0
 const max_jump_held_time := 1.0
 var jump_held_timer := 0.0
 var jump_held := false                  # if jump button is held
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			grav = FALL_GRAVITY
 
-		velocity.y += grav * delta
+		velocity.y += minf(grav * delta, terminal_velocity)
 
 	# Handle jump if on the ground
 	if Input.is_action_just_pressed("jump") and is_on_floor():

@@ -7,7 +7,7 @@ var next_level : PackedScene
 @export var flip_timer : float
 var tik_flags = [false, false, false]
 
-@onready var playerStartPos : Vector2 = $Player.position
+@onready var playerRespawn : Vector2 = $Player.position
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,13 +56,11 @@ func get_limits() -> Rect2i:
 	var used_rect: Rect2i = $LevelTileMap.get_used_rect()
 	var tile_size: Vector2i = $LevelTileMap.tile_set.tile_size
 	
-	print(used_rect)
 	used_rect.position.x *= tile_size.x
 	used_rect.position.y *= tile_size.y
 	used_rect.size.x *= tile_size.x
 	used_rect.size.y *= tile_size.y
-
-	print(used_rect)
+	
 	return used_rect
 
 # loads the next level scene and bring up level cleared screen
@@ -79,7 +77,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_player_player_dead():
-	$Player.position = playerStartPos
+	$Player.position = playerRespawn
 
 const greenTilesheets = [preload("res://assets/art/flip_block_green_off_tilesheet.png"),
 						 preload("res://assets/art/flip_block_green_on_tilesheet.png")]
@@ -97,3 +95,6 @@ func _on_tick_timer_timeout():
 	var ts : TileSet = $LevelTileMap.tile_set
 	ts.get_source(ts.get_source_id(2)).texture = greenTilesheets[int(!tick)]
 	ts.get_source(ts.get_source_id(3)).texture = pinkTilesheets[int(tick)]
+
+func set_respawn(pos : Vector2):
+	playerRespawn = pos
