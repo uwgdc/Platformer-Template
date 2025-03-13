@@ -7,5 +7,5 @@ func _ready():
 	
 func _on_body_entered(body:Node2D) -> void:
 	if (body is Player):
-		level.playerRespawn = position + Vector2(32,-32)
+		level.playerRespawn = position + Vector2(32,-64)
 		$AnimatedSprite2D.animation = "activated"
