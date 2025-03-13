@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bt2vamcju0s4u"]
+[gd_scene load_steps=19 format=3 uid="uid://bt2vamcju0s4u"]
 
 [ext_resource type="Script" path="res://scenes/enemies/guard.gd" id="1_vudsr"]
 [ext_resource type="Texture2D" uid="uid://dlmlqhiu6yxf6" path="res://assets/art/player_fall.png" id="2_wx7qs"]
@@ -6,10 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dmbk25hgsnlfv" path="res://assets/art/player_jump.png" id="4_60uld"]
 [ext_resource type="Texture2D" uid="uid://bb034nwyrsby2" path="res://assets/art/player_walk.png" id="5_gdibg"]
 [ext_resource type="Script" path="res://scenes/state machine/state_machine.gd" id="6_02fqt"]
-[ext_resource type="Script" path="res://scenes/enemies/patrol.gd" id="7_2py2i"]
 [ext_resource type="Script" path="res://scenes/enemies/sensor.gd" id="7_8e34n"]
-[ext_resource type="Script" path="res://scenes/enemies/fall.gd" id="8_6fjsn"]
-[ext_resource type="Script" path="res://scenes/enemies/chase.gd" id="9_jkmaf"]
+[ext_resource type="Script" path="res://scenes/enemies/blank_state.gd" id="7_q63ln"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwnan"]
 atlas = ExtResource("5_gdibg")
@@ -123,22 +121,10 @@ shape = SubResource("RectangleShape2D_ucb8u")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_02fqt")
-initial_state = NodePath("PatrolState")
+initial_state = NodePath("BlankState")
 
-[node name="PatrolState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "chase_state")]
-script = ExtResource("7_2py2i")
-fall_state = NodePath("../FallState")
-chase_state = NodePath("../ChaseState")
-
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("patrol_state", "chase_state")]
-script = ExtResource("8_6fjsn")
-patrol_state = NodePath("../PatrolState")
-chase_state = NodePath("../ChaseState")
-
-[node name="ChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "patrol_state")]
-script = ExtResource("9_jkmaf")
-fall_state = NodePath("../FallState")
-patrol_state = NodePath("../PatrolState")
+[node name="BlankState" type="Node" parent="StateMachine"]
+script = ExtResource("7_q63ln")
 
 [node name="Sensor" type="Node2D" parent="."]
 script = ExtResource("7_8e34n")
