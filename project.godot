@@ -33,6 +33,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GDC_Platformer_Template"
 
+[global_group]
+
+enemy=""
+
 [input]
 
 move_left={

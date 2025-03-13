@@ -1,0 +1,155 @@
+[gd_scene load_steps=21 format=3 uid="uid://bt2vamcju0s4u"]
+
+[ext_resource type="Script" path="res://scenes/enemies/guard.gd" id="1_vudsr"]
+[ext_resource type="Texture2D" uid="uid://dlmlqhiu6yxf6" path="res://assets/art/player_fall.png" id="2_wx7qs"]
+[ext_resource type="Texture2D" uid="uid://cs3n2acm175dr" path="res://assets/art/player_idle.png" id="3_o004d"]
+[ext_resource type="Texture2D" uid="uid://dmbk25hgsnlfv" path="res://assets/art/player_jump.png" id="4_60uld"]
+[ext_resource type="Texture2D" uid="uid://bb034nwyrsby2" path="res://assets/art/player_walk.png" id="5_gdibg"]
+[ext_resource type="Script" path="res://scenes/state machine/state_machine.gd" id="6_02fqt"]
+[ext_resource type="Script" path="res://scenes/enemies/patrol.gd" id="7_2py2i"]
+[ext_resource type="Script" path="res://scenes/enemies/sensor.gd" id="7_8e34n"]
+[ext_resource type="Script" path="res://scenes/enemies/fall.gd" id="8_6fjsn"]
+[ext_resource type="Script" path="res://scenes/enemies/chase.gd" id="9_jkmaf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwnan"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(0, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfyle"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(40, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct2ct"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(80, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kcj2"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(120, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pollj"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(160, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anbcy"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(200, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeg1e"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(240, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es1rl"]
+atlas = ExtResource("5_gdibg")
+region = Rect2(280, 0, 40, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntf1i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wx7qs")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o004d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_60uld")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwnan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfyle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct2ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kcj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pollj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anbcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeg1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es1rl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucb8u"]
+size = Vector2(54, 101)
+
+[node name="Guard" type="CharacterBody2D" groups=["enemy"]]
+z_index = 200
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_vudsr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.39, 0.39, 1)
+position = Vector2(0, 8)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ntf1i")
+animation = &"fall"
+speed_scale = 1.8
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 21.5)
+shape = SubResource("RectangleShape2D_ucb8u")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_02fqt")
+initial_state = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "chase_state")]
+script = ExtResource("7_2py2i")
+fall_state = NodePath("../FallState")
+chase_state = NodePath("../ChaseState")
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("patrol_state", "chase_state")]
+script = ExtResource("8_6fjsn")
+patrol_state = NodePath("../PatrolState")
+chase_state = NodePath("../ChaseState")
+
+[node name="ChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "patrol_state")]
+script = ExtResource("9_jkmaf")
+fall_state = NodePath("../FallState")
+patrol_state = NodePath("../PatrolState")
+
+[node name="Sensor" type="Node2D" parent="."]
+script = ExtResource("7_8e34n")
+
+[node name="ShortWallRay" type="RayCast2D" parent="Sensor"]
+position = Vector2(0, 38)
+target_position = Vector2(60, 0)
+
+[node name="TallWallRay" type="RayCast2D" parent="Sensor"]
+position = Vector2(0, 1)
+target_position = Vector2(60, 0)
+
+[node name="FloorRay" type="RayCast2D" parent="Sensor"]
+position = Vector2(48, 46)

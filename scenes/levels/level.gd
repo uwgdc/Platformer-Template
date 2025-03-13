@@ -21,6 +21,11 @@ func _ready() -> void:
 			child.player = $Player
 			child.level = self
 			
+	# Give enemies reference to player and level
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		
+		enemy.init($Player, self)
+			
 	#$LevelTileMap.update_internals()
 	for child in $LevelTileMap.get_children():
 		if (child is LevelObject):
