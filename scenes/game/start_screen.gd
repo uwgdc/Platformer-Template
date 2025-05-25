@@ -1,7 +1,7 @@
 extends Node
 
 
-var game_scene: PackedScene = preload("res://scenes/levels/level_2.tscn")
+var game_scene: PackedScene = preload("res://scenes/levels/level_1.tscn")
 @onready var start_button: Button = $MarginContainer/VBoxContainer/VBoxContainer/StartButton
 
 

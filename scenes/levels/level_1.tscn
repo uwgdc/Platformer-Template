@@ -43,6 +43,7 @@ tile_map_data = PackedByteArray("AAAAABMAAAAEAAIAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAAE
 
 [node name="Player" parent="." index="4"]
 position = Vector2(288, 1120)
+collision_layer = 1
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_egn4l")]
 position = Vector2(3424, 448)
